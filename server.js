@@ -1,51 +1,51 @@
 // Require Express to run server and routes
-const express = require("express");
+const framework = require("express");
 
 // Start up an instance of app
-const app = express();
+const application = framework();
 
-// CORS allows us to manage a Cross-origin resource sharing policy so that our front end can talk to the server.
-const cors = require("cors");
+// Require CORS to handle Cross-Origin Resource Sharing
+const crossOrigin = require("cors");
 
 // Enable All CORS Requests
-app.use(cors());
+application.use(crossOrigin());
 
-//body-parser allow the backend to access JSON data sent from the client using request.body in POST route handler.
-const bodyParser = require("body-parser");
+// Require body-parser to parse incoming request bodies
+const jsonParser = require("body-parser");
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+// Parse application/x-www-form-urlencoded
+application.use(jsonParser.urlencoded({ extended: false }));
 
-// parse application/json
-app.use(bodyParser.json());
+// Parse application/json
+application.use(jsonParser.json());
 
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+let endpointData = {};
 
 // Initialize the main project folder
-app.use(express.static("website"));
+application.use(framework.static("website"));
 
 // Callback function to complete GET '/all'
-const getAll = (req, res) => res.status(200).send(projectData);
+const retrieveAll = (req, res) => res.status(200).send(endpointData);
 // GET Route
-app.get("/all", getAll);
-
+application.get("/all", retrieveAll);
 
 // Callback function to complete POST '/add'
-const postData = (req, res) => {
-    projectData = req.body;
-    console.log(projectData);
-    res.status(200).send(projectData);
-  }
-// GET Route
-app.post("/add", postData);
+const updateData = (req, res) => {
+    endpointData = req.body;
+    console.log(endpointData);
+    res.status(200).send(endpointData);
+};
+// POST Route
+application.post("/add", updateData);
 
-const port = 4000;
-const hostname = "127.0.0.1";
+// Define the port and host for the server
+const serverPort = 4000;
+const serverHost = "127.0.0.1";
 
-// function to test the server 
-const listening = () =>
-console.log(`Server running at http://${hostname}:${port}/`);
+// Function to test the server
+const startServer = () =>
+console.log(`Server running at http://${serverHost}:${serverPort}/`);
 
-// spin up the server
-app.listen(port, listening);
+// Spin up the server
+application.listen(serverPort, startServer);

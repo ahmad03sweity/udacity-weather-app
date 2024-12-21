@@ -12,8 +12,8 @@ const apiKey = ",&appid=d24bf70d6dae818a6893be61edd0ae3c&units=metric";
 // the URL of the server to post data
 const server = "http://127.0.0.1:4000";
 
-// showing the error to the user
-const error = document.getElementById("error");
+// showing the postalError to the user
+const postalError = document.getElementById("postalError");
 /**
  * // generateData //
  * function to get input values
@@ -25,11 +25,11 @@ const error = document.getElementById("error");
 
 const generateData = () => { 
   //get value after click on the button
-  const zip = document.getElementById("zip").value;
+  const postal = document.getElementById("postal").value;
   const feelings = document.getElementById("feelings").value;
 
   // getWeatherData return promise
-  getWeatherData(zip).then((data) => {
+  getWeatherData(postal).then((data) => {
     //making sure from the received data to execute rest of the steps
     if (data) {
       const {
@@ -59,21 +59,21 @@ const generateData = () => {
 document.getElementById("generate").addEventListener("click", generateData);
 
 //Function to GET Web API Data
-const getWeatherData = async (zip) => {
+const getWeatherData = async (postal) => {
   try {
-    const res = await fetch(baseURL + zip + apiKey);
+    const res = await fetch(baseURL + postal + apiKey);
     const data = await res.json();
 
     if (data.cod != 200) {
-      // display the error message on UI
-      error.innerHTML = data.message;
-      setTimeout(_=> error.innerHTML = '', 2000)
+      // display the postalError message on UI
+      postalError.innerHTML = data.message;
+      setTimeout(_=> postalError.innerHTML = '', 2000)
       throw `${data.message}`;
     }
 
     return data;
-  } catch (error) {
-    console.log(error);
+  } catch (postalError) {
+    console.log(postalError);
   }
 };
 
@@ -91,8 +91,8 @@ const postData = async (url = "", info = {}) => {
     const newData = await res.json();
     console.log(`You just saved`, newData);
     return newData;
-  } catch (error) {
-    console.log(error);
+  } catch (postalError) {
+    console.log(postalError);
   }
 };
 
@@ -108,7 +108,7 @@ const updatingUI = async () => {
     document.getElementById("temp").innerHTML = savedData.temp + '&degC';
     document.getElementById("description").innerHTML = savedData.description;
     document.getElementById("content").innerHTML = savedData.feelings;
-  } catch (error) {
-    console.log(error);
+  } catch (postalError) {
+    console.log(postalError);
   }
 };

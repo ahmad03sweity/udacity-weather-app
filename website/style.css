@@ -1,23 +1,23 @@
 body {
   margin: 0;
   padding: 0;
-  background: url(./bg.jpg);
+  background: url(./background.jpeg);
   background-position: center center;
   background-size: cover;
   background-attachment: fixed;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
-.headline{
+.title{
   color: white;
   font-size: 25px;
-  background-color: #0a113a;
+  background-color: #0a3a1a;
   padding: 10px;
   text-align: center;
 }
-#zip,
+#postal,
 #feelings,
 #generate{
-  background: #17053866;
+  background: #0a3a1a;
   margin: 60px auto 0px;
   width: 40%;
   outline: none;
@@ -30,14 +30,14 @@ body {
   font-size: 15px;
   resize: none;
 }
-#zip::placeholder,
+#postal::placeholder,
 #feelings::placeholder{
   color: white;
   font-family: sans-serif;
   line-height: 38px;
 }
-#error {
-  background-color: #e91e63;
+#postalError {
+  background-color: #e91e1e;
   color: white;
   font-size: large;
   width: 22%;
@@ -52,12 +52,12 @@ body {
 #generate{
   width: 20%;
   margin-top: 18px;
-  background: #0a113a;
+  background: #0a3a1a;
   cursor: pointer;
 }
 #entry{
   width: 50%;
-  background: #07133340;
+  background: #0a3a1a;
   margin: 50px auto;
   border-radius: 10px;
   height: 208px;
@@ -84,5 +84,6 @@ body {
 }
 #temp,
 #city{
+  color: white;
   font-size: 4vw;
 }
